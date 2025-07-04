@@ -7,6 +7,7 @@ import VideoCarousel from "../components/VideoCarousel";
 import ImageCarousel from "../components/ImageCarousel";
 import { FiArrowRight } from "react-icons/fi";
 import toast from "react-hot-toast";
+import HeroSlider from "../components/heroSlider";
 
 export default function Home() {
 
@@ -16,6 +17,19 @@ export default function Home() {
     const [accessories, setAccessories] = useState([]);
     const [videos, setVideos] = useState([]);
     const [offers, setOffers] = useState([]);
+
+    const heroimg = [];
+
+    topTshirts.map((item) => {
+        if (item?.image) {
+            heroimg.push(item.image);
+        }
+    });
+    topHoodies.map((item) => {
+        if (item?.image) {
+            heroimg.push(item.image);
+        }
+    });
 
     useEffect(() => {
         api.get('/products/top/tshirts')
@@ -105,11 +119,19 @@ export default function Home() {
                         >Explore now</a>
                     </div>
 
-                    <div>
+                    {/* <div>
                         <div className="flex items-center justify-center bg-subBlue h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] md:h-[450px] md:w-[450px] pt-[10px] m-0 md:ml-[25px] border-2 border-mainBlue rounded-tl-[100px] rounded-tr-[20px] rounded-br-[100px] rounded-bl-[20px] overflow-hidden">
                             <img src="/assets/homeHero.png" className="h-full w-full object-contain" alt="Hero" />
+                            {heroimg.map((img, index) => (
+                                <img
+                                    src={img}
+                                    alt={`Slide ${index}`}
+                                    className="h-full w-full object-contain"
+                                />
+                            ))}
                         </div>
-                    </div>
+                    </div> */}
+                    <HeroSlider heroimg={heroimg} />
                 </div>
             </div >
 
