@@ -64,7 +64,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-const allowedOrigins = ['https://rhiyaprinters.vercel.app', 'https://rhiyaprinters-admin.vercel.app', 'https://rhiyaprinters.ca'];
+const allowedOrigins = ['https://rhiyaprinters.vercel.app', 'https://rhiyaprinters-admin.vercel.app', 'https://www.rhiyaprinters.ca'];
 
 app.use(cors({
   origin: function(origin, callback){
