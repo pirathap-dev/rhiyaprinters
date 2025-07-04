@@ -334,7 +334,7 @@ export default function CustomDesign() {
         const formData = new FormData();
         formData.append("image", designImage);
 
-        const apiKey = process.env.REACT_APP_API_BASE_URL;
+        const apiKey = process.env.REACT_APP_IMGBB_API_KEY;
         const url = `https://api.imgbb.com/1/upload?key=${apiKey}`;
 
         try {
