@@ -18,18 +18,10 @@ export default function Home() {
     const [videos, setVideos] = useState([]);
     const [offers, setOffers] = useState([]);
 
-    const heroimg = [];
+    const heroimg = [...topTshirts, ...topHoodies]
+        .filter(item => item?.image)
+        .map(item => item.image);
 
-    topTshirts.map((item) => {
-        if (item?.image) {
-            heroimg.push(item.image);
-        }
-    });
-    topHoodies.map((item) => {
-        if (item?.image) {
-            heroimg.push(item.image);
-        }
-    });
 
     useEffect(() => {
         api.get('/products/top/tshirts')
@@ -119,19 +111,21 @@ export default function Home() {
                         >Explore now</a>
                     </div>
 
-                    {/* <div>
-                        <div className="flex items-center justify-center bg-subBlue h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] md:h-[450px] md:w-[450px] pt-[10px] m-0 md:ml-[25px] border-2 border-mainBlue rounded-tl-[100px] rounded-tr-[20px] rounded-br-[100px] rounded-bl-[20px] overflow-hidden">
-                            <img src="/assets/homeHero.png" className="h-full w-full object-contain" alt="Hero" />
-                            {heroimg.map((img, index) => (
+                    {heroimg?.length > 0 ? <HeroSlider heroimg={heroimg} />
+                        :
+                        <div>
+                            <div className="flex items-center justify-center bg-subBlue h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] md:h-[450px] md:w-[450px] pt-[10px] m-0 md:ml-[25px] border-2 border-mainBlue rounded-tl-[100px] rounded-tr-[20px] rounded-br-[100px] rounded-bl-[20px] overflow-hidden">
                                 <img
-                                    src={img}
-                                    alt={`Slide ${index}`}
+                                    src={"/assets/thanushan.png"}
+                                    alt={"Hero Image"}
                                     className="h-full w-full object-contain"
                                 />
-                            ))}
+                            </div>
                         </div>
-                    </div> */}
-                    <HeroSlider heroimg={heroimg} />
+                    }
+
+
+
                 </div>
             </div >
 
