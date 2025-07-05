@@ -133,7 +133,7 @@ export default function Products() {
                                 </td>
                                 <td className="px-6 py-4">{p.name}</td>
                                 <td className="px-6 py-4">{p.category}</td>
-                                <td className="px-6 py-4">Rs. {p.price}</td>
+                                <td className="px-6 py-4">$ {p.price}</td>
                                 <td className="px-6 py-4">
                                     {p.hasVariants ? (
                                         <span className="text-green-600 font-semibold">Yes</span>
