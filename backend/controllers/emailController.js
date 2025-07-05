@@ -186,7 +186,7 @@ export const verifyOtpController = async (req, res) => {
                           👤 Customer Info:
                           Name: ${shippingDetails.name}
                           Contact: ${shippingDetails.contact}
-                          Address: ${shippingDetails.house}, ${shippingDetails.street}, ${shippingDetails.city}, ${shippingDetails.postal}
+                          Address: ${shippingDetails.house}, ${shippingDetails.street}, ${shippingDetails.city}, ${shippingDetails.province}, ${shippingDetails.postal}
                           Email: ${email}
 
                           🛍️ Items:
@@ -279,7 +279,7 @@ export const verifyOtpController = async (req, res) => {
                                   <p>
                                     Name: ${shippingDetails.name}<br/>
                                     Contact: ${shippingDetails.contact}<br/>
-                                    Address: ${shippingDetails.house}, ${shippingDetails.street}, ${shippingDetails.city}, ${shippingDetails.postal}<br/>
+                                    Address: ${shippingDetails.house}, ${shippingDetails.street}, ${shippingDetails.city}, ${shippingDetails.province}, ${shippingDetails.postal}<br/>
                                     Email: ${email}
                                   </p>
 

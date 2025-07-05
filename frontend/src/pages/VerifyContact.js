@@ -163,9 +163,11 @@ export default function VerifyContact() {
     house: '',
     street: '',
     city: '',
+    province: '',
     postal: '',
     contact: '',
   });
+
 
   useEffect(() => {
     try {
@@ -185,9 +187,11 @@ export default function VerifyContact() {
         house: shippingData.house || '',
         street: shippingData.street || '',
         city: shippingData.city || '',
+        province: shippingData.province || '',
         postal: shippingData.postal || '',
         contact: shippingData.contact || '',
       });
+
 
       // send OTP with the email directly from localStorage
       const sendOtp = async () => {

@@ -14,10 +14,12 @@ export default function Shipping() {
         house: '',
         street: '',
         city: '',
+        province: '',
         postal: '',
         email: '',
         contact: '',
     });
+
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -107,6 +109,28 @@ export default function Shipping() {
                                     className="w-full p-2 h-[50px] mb-4 border-2 border-subBlue rounded"
                                     required
                                 />
+                                <select
+                                    name="province"
+                                    value={formData.province || ""}
+                                    onChange={handleChange}
+                                    className="w-full p-2 h-[50px] mb-4 border-2 border-subBlue rounded"
+                                    required
+                                >
+                                    <option value="">Select Province</option>
+                                    <option value="AB">Alberta</option>
+                                    <option value="BC">British Columbia</option>
+                                    <option value="MB">Manitoba</option>
+                                    <option value="NB">New Brunswick</option>
+                                    <option value="NL">Newfoundland and Labrador</option>
+                                    <option value="NS">Nova Scotia</option>
+                                    <option value="ON">Ontario</option>
+                                    <option value="PE">Prince Edward Island</option>
+                                    <option value="QC">Quebec</option>
+                                    <option value="SK">Saskatchewan</option>
+                                    <option value="NT">Northwest Territories</option>
+                                    <option value="NU">Nunavut</option>
+                                    <option value="YT">Yukon</option>
+                                </select>
                                 <input
                                     name="postal"
                                     value={formData.postal}
