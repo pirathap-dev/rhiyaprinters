@@ -167,6 +167,9 @@ export default function VerifyContact() {
     postal: '',
     contact: '',
   });
+  const [resendTimer, setResendTimer] = useState(300);
+  const [canResend, setCanResend] = useState(false);
+
 
 
   useEffect(() => {
@@ -199,6 +202,9 @@ export default function VerifyContact() {
           const res = await api.post('/email/send-otp', { email: shippingData.email });
           if (res.data.success) {
             toast.success(`OTP sent to Email: ${shippingData.email}`);
+            setCanResend(false);
+            setResendTimer(300); // reset to 5 min
+
           } else {
             toast.error("Failed to send OTP. Please try again.");
             navigate("/shipping");
@@ -215,6 +221,24 @@ export default function VerifyContact() {
       navigate("/shipping");
     }
   }, [navigate]);
+
+  useEffect(() => {
+    let timer;
+    if (!canResend && resendTimer > 0) {
+      timer = setInterval(() => {
+        setResendTimer((prev) => prev - 1);
+      }, 1000);
+    }
+
+    if (resendTimer === 0) {
+      setCanResend(true);
+      clearInterval(timer);
+    }
+
+    return () => clearInterval(timer);
+  }, [canResend, resendTimer]);
+
+
 
   const handleVerify = async () => {
     if (loading) return; // prevent multiple clicks
@@ -247,6 +271,8 @@ export default function VerifyContact() {
       const res = await api.post('/email/send-otp', { email });
       if (res.data.success) {
         toast.success(`OTP sent to Email: ${email}`);
+        setCanResend(false);
+        setResendTimer(300); // reset to 5 min
       } else {
         toast.error("Failed to send OTP. Please try again.");
         navigate("/shipping");
@@ -294,11 +320,12 @@ export default function VerifyContact() {
 
           <button
             onClick={handleResend}
-            disabled={loading}
-            className={`text-mainBlue text-[14px] underline mt-2 ${loading ? 'cursor-not-allowed text-gray-400' : 'cursor-pointer'}`}
+            disabled={!canResend || loading}
+            className={`text-mainBlue text-[14px] underline mt-2 ${!canResend || loading ? 'cursor-not-allowed text-gray-400' : 'cursor-pointer'}`}
           >
-            Resend OTP
+            {canResend ? "Resend OTP" : `Resend in ${Math.floor(resendTimer / 60)}:${(resendTimer % 60).toString().padStart(2, '0')}`}
           </button>
+
         </div>
       </div>
       <Footer />
