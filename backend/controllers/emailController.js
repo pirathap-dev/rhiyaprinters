@@ -1,73 +1,3 @@
-// import { sendEmail } from '../utils/emailService.js';
-// import { generateOTP, verifyOTP } from '../utils/otpStore.js';
-
-// export const sendOtpController = async (req, res) => {
-//   const { email } = req.body;
-//   const otp = generateOTP(email);
-//   const sent = await sendEmail(email, 'Your Rhiya Printers OTP', `Your OTP is: ${otp}`);
-//   if (sent) {
-//     res.json({ success: true, message: 'OTP sent' });
-//   } else {
-//     res.status(500).json({ success: false, message: 'Failed to send OTP' });
-//   }
-// };
-
-// export const verifyOtpController = async (req, res) => {
-//   const { email, otp, cart, shippingDetails } = req.body;
-
-//   if (!verifyOTP(email, otp)) {
-//     return res.status(400).json({ success: false, message: 'Invalid or expired OTP' });
-//   }
-
-//   //  Build readable order summaries
-//   const orderItems = cart.map((item, index) => {
-//     return `${index + 1}. ${item.name} (${item.color}, ${item.size}) x ${item.quantity} - LKR ${item.price * item.quantity}`;
-//   }).join('\n');
-
-//   const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-//   //  Email to Customer
-//   const customerSubject = '🧾 Your Order is Confirmed – Rhiya Printers';
-//   const customerText = `
-// Hello ${shippingDetails.name},
-
-// Thank you for your order! 🎉
-
-// 🛒 Order Summary:
-// ${orderItems}
-
-// 💵 Total: LKR ${totalAmount}
-
-// We'll contact you soon to confirm delivery details.
-
-// - Rhiya Printers
-//   `;
-
-//   // Email to Owner
-//   const ownerSubject = `📥 New Order from ${shippingDetails.name}`;
-//   const ownerText = `
-// New order received via RhiyaPrinters.ca
-
-// 👤 Customer Info:
-// Name: ${shippingDetails.name}
-// Contact: ${shippingDetails.contact}
-// Address: ${shippingDetails.house}, ${shippingDetails.street}, ${shippingDetails.city}, ${shippingDetails.postal}
-// Email: ${email}
-
-// 🛍️ Items:
-// ${orderItems}
-
-// 💰 Total Amount: LKR ${totalAmount}
-//   `;
-
-//   // Send emails
-//   await sendEmail(email, customerSubject, customerText);
-//   await sendEmail(process.env.OWNER_EMAIL, ownerSubject, ownerText);
-
-//   res.json({ success: true, message: 'OTP verified, order confirmed, emails sent.' });
-// };
-
-
 import { sendEmail } from '../utils/emailService.js';
 import { generateOTP, verifyOTP } from '../utils/otpStore.js';
 
@@ -160,7 +90,13 @@ export const verifyOtpController = async (req, res) => {
   }).join('\n');
 
 
-  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0); // number
+  const totalUnits = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const shippingFees = +(10.00 * totalUnits); 
+  const tax = +((totalAmount + shippingFees) * 0.13); 
+  const finalTotalAmount = (totalAmount + shippingFees + tax); 
+
+
 
   // Plain Texts
   const customerSubject = '🧾 Your Order is Confirmed – Rhiya Printers';
@@ -172,9 +108,10 @@ export const verifyOtpController = async (req, res) => {
                           🛒 Order Summary:
                           ${orderItems}
 
-                          💵 Total: CAD ${totalAmount} (Shipment fees is not added yet).
+                          💵 Total: CAD ${(finalTotalAmount).toFixed(2)}
 
-                          We'll contact you soon to confirm delivery details and final amount including shipping fees.
+                          Your order will be confirmed only after the payment is done ( Please e-transfer the total amount of CAD ${(finalTotalAmount).toFixed(2)} to rhiyaprinterspayment@gmail.com )
+                          We'll contact you soon to after the payment is done to confirm delivery details.
 
                           - Rhiya Printers
                             `;
@@ -192,7 +129,7 @@ export const verifyOtpController = async (req, res) => {
                           🛍️ Items:
                           ${orderItems}
 
-                          💰 Total Amount: CAD ${totalAmount}
+                          💰 Total Amount: CAD ${(finalTotalAmount).toFixed(2)}
                             `;
 
   // HTML Templates
@@ -239,9 +176,10 @@ export const verifyOtpController = async (req, res) => {
 
 
 
-                                  <p><strong>Total:</strong> CAD ${totalAmount} (Shipment fees is not added yet)</p>
+                                  <p><strong>Total:</strong> CAD ${(finalTotalAmount).toFixed(2)}</p>
 
-                                  <p>📦 We will contact you soon to confirm delivery details and total amount with shipping fees.</p>
+                                  <p>📦 Your order will be confirmed only after the payment is done ( Please e-transfer the total amount of CAD ${(finalTotalAmount).toFixed(2)} to rhiyaprinterspayment@gmail.com ).</p>
+                                  <p>We'll contact you soon to confirm delivery details.</p>
 
                                   <hr style="margin: 30px 0;" />
 
@@ -302,7 +240,7 @@ export const verifyOtpController = async (req, res) => {
                                     </tbody>
                                   </table>
 
-                                  <p><strong>Total:</strong> CAD ${totalAmount}</p>
+                                  <p><strong>Total:</strong> CAD ${(finalTotalAmount).toFixed(2)}</p>
                                 </div>
 
                                 <div style="background-color: #002f6c; color: white; text-align: center; padding: 15px;">

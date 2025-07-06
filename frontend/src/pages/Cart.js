@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Product from '../components/cartComponents/product';
 import ConfirmModal from '../components/cartComponents/ConfirmModal';
+import Summary from '../components/cartComponents/summary';
 
 export default function Cart() {
 
     useEffect(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, []);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
 
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("RhiyaPrintersCart")) || []);
     const [modalVisible, setModalVisible] = useState(false);
@@ -17,6 +17,8 @@ export default function Cart() {
 
     const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const totalUnits = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    const shippingFees = (10.00 * totalUnits);
+    const tax = ((totalAmount + parseFloat(shippingFees)) * 0.13);
 
     const handleQuantityChange = (id, color, size, name, newQty, isCustom) => {
         const updatedItems = cartItems.map(item => {
@@ -90,31 +92,13 @@ export default function Cart() {
                             }
 
                         </div>
-                        <div className='flex items-center justify-center lg:justify-end w-full lg:w-[450px] pt-8 lg:pt-0'>
-                            <div className='flex flex-col items-center justify-between bg-white border-[3px] border-mainBlue rounded-md h-[350px] w-[300px] md:h-[450px] md:w-[400px] p-4'>
-                                <div className='flex flex-col items-center justify-between h-2/3'>
-                                    <div className='flex flex-col items-center justify-center w-full gap-3 text-mainBlue'>
-                                        <h1 className='font-poppins font-bold text-[24px] md:text-[28px] lg:text-[32px] w-full text-center'>Summary</h1>
-                                        <div className='flex items-center justify-center w-full'>
-                                            <p className='font-poppins font-medium text-[16px] md:text-[18px] lg:text-[20px] w-1/2 text-start'>Total amount:</p>
-                                            <p className='font-mono font-bold text-[20px] md:text-[24px] lg:text-[28px] w-1/2 text-start'>$ {totalAmount.toFixed(2)}</p>
-                                        </div>
-                                        <div className='flex items-center justify-center w-full'>
-                                            <p className='font-poppins font-medium text-[16px] md:text-[18px] lg:text-[20px] w-1/2 text-start'>Total unit:</p>
-                                            <p className='font-mono font-bold text-[20px] md:text-[24px] lg:text-[28px] w-1/2 text-start'>{totalUnits}</p>
-                                        </div>
-                                    </div>
-                                    <p className='font-poppins font-normal text-[12px] md:text-[16px] text-red-500 text-justify'>You will receive the total amount including shipping fees and taxes through WhatsApp after order is placed.</p>
-                                </div>
-                                <div>
-                                    <Link to={"/shipping"}
-                                        className="inline-block bg-mainBlue text-white font-poppins font-medium text-[18px] md:text-[20px] px-14 md:px-16 py-3 border-2 hover:border-mainBlue rounded-full shadow-md hover:bg-subGrey hover:text-mainBlue transition"
-                                    >
-                                        Proceed
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
+                        <Summary
+                            totalAmount={totalAmount}
+                            totalUnits={totalUnits}
+                            shippingFee={shippingFees}
+                            tax={tax}
+                        />
+
                     </div>
                     : (
                         <p className="text-gray-500 font-poppins">Your cart is empty.</p>
