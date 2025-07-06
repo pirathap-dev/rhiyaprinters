@@ -6,8 +6,8 @@ export default function FilterPanel({ filters, setFilters }) {
             {/* Left: Price Slider */}
             <div className="flex-1">
                 <PriceSlider
-                    min={0}
-                    max={1000}
+                    min={1}
+                    max={100}
                     value={filters.price}
                     onChangeComplete={(val) => setFilters({ ...filters, price: val })}
                 />
