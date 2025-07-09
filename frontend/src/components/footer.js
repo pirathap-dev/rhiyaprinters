@@ -1,6 +1,6 @@
 import { FiFacebook } from "react-icons/fi";
-import { FiTwitter } from "react-icons/fi";
-import { FiInstagram } from "react-icons/fi";
+import { FaYoutube } from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -10,11 +10,11 @@ export default function Footer() {
                 <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-[50px]">
                     <div className="flex flex-col justify-start gap-[20px] lg:gap-[30px]">
                         <a href="/">
-                        <img
-                            src="/assets/logo.png"
-                            alt="Rhiya-Printers Logo"
-                            className="h-[80px] w-[124px] object-contain"
-                        />
+                            <img
+                                src="/assets/logo.png"
+                                alt="Rhiya-Printers Logo"
+                                className="h-[80px] w-[124px] object-contain"
+                            />
                         </a>
                         <div className="flex flex-col items-start gap-[10px] lg:gap-[20px]">
                             <h1 className="font-slab font-medium text-[22px] text-white">
@@ -23,16 +23,16 @@ export default function Footer() {
 
                             <div className="flex justify-start items-center gap-[14px] lg:gap-[24px]">
                                 <FiFacebook className="stroke-subBlue w-[38px] h-[38px] hover:stroke-white hover:cursor-pointer" />
-                                <FiTwitter className="stroke-subBlue w-[38px] h-[38px] hover:stroke-white hover:cursor-pointer" />
-                                <FiInstagram className="stroke-subBlue w-[38px] h-[38px] hover:stroke-white hover:cursor-pointer" />
+                                <FaYoutube className="text-subBlue w-[40px] h-[40px] hover:text-white hover:cursor-pointer" />
+                                <Link to={"https://www.tiktok.com/@rhiya.printers"}><SiTiktok className="text-subBlue w-[36px] h-[36px] hover:text-white hover:cursor-pointer" /></Link>
                             </div>
                         </div>
                     </div>
                     <div className="flex flex-col items-start gap-[20px] lg:gap-[30px]">
                         <a href="/shop">
-                        <h1 className="font-slab font-medium text-[22px] text-white">
-                            SHOP
-                        </h1>
+                            <h1 className="font-slab font-medium text-[22px] text-white">
+                                SHOP
+                            </h1>
                         </a>
                         <div className="flex flex-col items-start gap-[10px] lg:gap-[20px]">
                             <p className="font-slab font-medium text-[22px] text-subBlue hover:text-white hover:cursor-pointer">Products</p>

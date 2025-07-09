@@ -92,9 +92,9 @@ export const verifyOtpController = async (req, res) => {
 
   const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0); // number
   const totalUnits = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const shippingFees = +(10.00 * totalUnits); 
-  const tax = +((totalAmount + shippingFees) * 0.13); 
-  const finalTotalAmount = (totalAmount + shippingFees + tax); 
+  const shippingFees = +(10.00 * totalUnits);
+  const tax = +((totalAmount + shippingFees) * 0.13);
+  const finalTotalAmount = (totalAmount + shippingFees + tax);
 
 
 
@@ -108,7 +108,12 @@ export const verifyOtpController = async (req, res) => {
                           🛒 Order Summary:
                           ${orderItems}
 
-                          💵 Total: CAD ${(finalTotalAmount).toFixed(2)}
+                          📦 Shipping Address: ${shippingDetails.house}, ${shippingDetails.street}, ${shippingDetails.city}, ${shippingDetails.province}, ${shippingDetails.postal}
+
+                          💵 Sub Total: CAD ${(totalAmount).toFixed(2)}
+                          💵 Shipping Fees: CAD ${(shippingFees).toFixed(2)}
+                          💵 Tax Amount: CAD ${(tax).toFixed(2)}
+                          💵 Total Amount: CAD ${(finalTotalAmount).toFixed(2)}
 
                           Your order will be confirmed only after the payment is done ( Please e-transfer the total amount of CAD ${(finalTotalAmount).toFixed(2)} to rhiyaprinterspayment@gmail.com )
                           We'll contact you soon to after the payment is done to confirm delivery details.
@@ -129,6 +134,9 @@ export const verifyOtpController = async (req, res) => {
                           🛍️ Items:
                           ${orderItems}
 
+                          💰 Sub Total: CAD ${(totalAmount).toFixed(2)}
+                          💰 Shipping Fees: CAD ${(shippingFees).toFixed(2)}
+                          💰 Tax Amount: CAD ${(tax).toFixed(2)}
                           💰 Total Amount: CAD ${(finalTotalAmount).toFixed(2)}
                             `;
 
@@ -173,10 +181,13 @@ export const verifyOtpController = async (req, res) => {
                                       ${orderItemsHtml}
                                     </tbody>
                                   </table>
+                                  
+                                  <p><strong>Shipping Address:</strong> ${shippingDetails.house}, ${shippingDetails.street}, ${shippingDetails.city}, ${shippingDetails.province}, ${shippingDetails.postal}</p>
 
-
-
-                                  <p><strong>Total:</strong> CAD ${(finalTotalAmount).toFixed(2)}</p>
+                                  <p><strong>Sub Total:</strong> CAD ${(totalAmount).toFixed(2)}</p>
+                                  <p><strong>Shipping Fees:</strong> CAD ${(shippingFees).toFixed(2)}</p>
+                                  <p><strong>Tax Amount:</strong> CAD ${(tax).toFixed(2)}</p>
+                                  <p><strong>Total Amount:</strong> CAD ${(finalTotalAmount).toFixed(2)}</p>
 
                                   <p>📦 Your order will be confirmed only after the payment is done ( Please e-transfer the total amount of CAD ${(finalTotalAmount).toFixed(2)} to rhiyaprinterspayment@gmail.com ).</p>
                                   <p>We'll contact you soon to confirm delivery details.</p>
@@ -240,7 +251,10 @@ export const verifyOtpController = async (req, res) => {
                                     </tbody>
                                   </table>
 
-                                  <p><strong>Total:</strong> CAD ${(finalTotalAmount).toFixed(2)}</p>
+                                  <p><strong>Sub Total:</strong> CAD ${(totalAmount).toFixed(2)}</p>
+                                  <p><strong>Shipping Fees:</strong> CAD ${(shippingFees).toFixed(2)}</p>
+                                  <p><strong>Tax Amount:</strong> CAD ${(tax).toFixed(2)}</p>
+                                  <p><strong>Total Amount:</strong> CAD ${(finalTotalAmount).toFixed(2)}</p>
                                 </div>
 
                                 <div style="background-color: #002f6c; color: white; text-align: center; padding: 15px;">

@@ -18,9 +18,7 @@ export default function Home() {
     const [videos, setVideos] = useState([]);
     const [offers, setOffers] = useState([]);
 
-    const heroimg = [...topTshirts, ...topHoodies]
-        .filter(item => item?.image)
-        .map(item => item.image);
+    const heroimg = ["/assets/product/p1.png", "/assets/product/p3.png", "/assets/product/p2.png", "/assets/product/p4.png", "/assets/product/p5.png", "/assets/product/p6.png",]
 
 
     useEffect(() => {

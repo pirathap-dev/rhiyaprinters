@@ -23,7 +23,7 @@ export default function ProductModal({ onClose, onSubmit, initialData = null }) 
     const [variantSizes, setVariantSizes] = useState(["S", "M", "L", "XL", "XXL"]);
     const [isUploading, setIsUploading] = useState(false);
 
-    const allowedColors = ["Red", "Green", "Blue", "Orange", "Black", "White"];
+    const allowedColors = ["Red", "Green", "Blue", "Orange", "Black", "White", "Yellow", "Brown", "Grey"];
     const categoryOptions = {
         "T-Shirts": ["Round Neck T-Shirt", "Collar T-shirt"],
         "Hoodies": ["Zipped Hoodies", "Unzipped Hoodies"],
