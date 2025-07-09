@@ -9,17 +9,17 @@ import Slider from "react-slick";
 
 const productData = {
     "T-Shirts": {
-        "Round Neck T-Shirt": { image: ["/assets/CDIMAGES/CDRT3.PNG", "/assets/CDIMAGES/CDRT2.PNG", "/assets/CDIMAGES/CDRT1.PNG", "/assets/CDIMAGES/CDRT4.PNG", "/assets/CDIMAGES/CDRT5.PNG",], price: 20 },
+        "Round Neck T-Shirt": { image: ["/assets/CDIMAGES/CDRT3.png", "/assets/CDIMAGES/CDRT2.png", "/assets/CDIMAGES/CDRT1.png", "/assets/CDIMAGES/CDRT4.png", "/assets/CDIMAGES/CDRT5.png",], price: 20 },
     },
     "Hoodies": {
-        "Zipped Hoodies": { image: ["/assets/CDIMAGES/CDUZH.PNG"], price: 20 },
-        "Unzipped Hoodies": { image: ["/assets/CDIMAGES/CDZH.PNG"], price: 20 },
+        "Zipped Hoodies": { image: ["/assets/CDIMAGES/CDUZH.png"], price: 20 },
+        "Unzipped Hoodies": { image: ["/assets/CDIMAGES/CDZH.png"], price: 20 },
     },
     "Accessories": {
-        "Key Chains": { image: ["/assets/CDIMAGES/CDKC1.PNG", "/assets/CDIMAGES/CDKC2.PNG", "/assets/CDIMAGES/CDKC3.PNG"], price: 10 },
-        "Caps": { image: ["/assets/CDIMAGES/CDC.PNG"], price: 25 },
-        "Mugs": { image: ["/assets/CDIMAGES/CDM.PNG"], price: 25 },
-        "Bottles": { image: ["/assets/CDIMAGES/CDB.PNG"], price: 25 },
+        "Key Chains": { image: ["/assets/CDIMAGES/CDKC1.png", "/assets/CDIMAGES/CDKC2.png", "/assets/CDIMAGES/CDKC3.png"], price: 10 },
+        "Caps": { image: ["/assets/CDIMAGES/CDC.png"], price: 25 },
+        "Mugs": { image: ["/assets/CDIMAGES/CDM.png"], price: 25 },
+        "Bottles": { image: ["/assets/CDIMAGES/CDB.png"], price: 25 },
     }
 };
 
