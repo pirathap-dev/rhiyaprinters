@@ -23,7 +23,7 @@ export default function Shop() {
         location.state?.category || "T-Shirts"
     );
     const [filters, setFilters] = useState({
-        price: [0, 1000],
+        price: [0, 100],
         subcategories: [
             { name: "Round Neck T-Shirt", checked: false },
             { name: "Collar T-shirt", checked: false },
