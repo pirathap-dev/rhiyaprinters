@@ -12,8 +12,8 @@ const productData = {
         "Round Neck T-Shirt": { image: ["/assets/CDIMAGES/CDRT3.png", "/assets/CDIMAGES/CDRT2.png", "/assets/CDIMAGES/CDRT1.png", "/assets/CDIMAGES/CDRT4.png", "/assets/CDIMAGES/CDRT5.png",], price: 20 },
     },
     "Hoodies": {
-        "Zipped Hoodies": { image: ["/assets/CDIMAGES/CDUZH.png"], price: 20 },
-        "Unzipped Hoodies": { image: ["/assets/CDIMAGES/CDZH.png"], price: 20 },
+        "Zipped Hoodies": { image: ["/assets/CDIMAGES/CDUZH.png"], price: 35 },
+        "Unzipped Hoodies": { image: ["/assets/CDIMAGES/CDZH.png"], price: 30 },
     },
     "Accessories": {
         "Key Chains": { image: ["/assets/CDIMAGES/CDKC1.png", "/assets/CDIMAGES/CDKC2.png", "/assets/CDIMAGES/CDKC3.png"], price: 10 },
